@@ -1,0 +1,24 @@
+[project]
+name = "vbn-code"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = "==3.8.*"
+dependencies = [
+    "allensdk",
+    "brain-observatory-utilities",
+    "h5py==3.7.0",
+    "matplotlib",
+    "numba",
+    "opencv-python",
+    "pynrrd",
+    "scikit-learn",
+    "scipy",
+    "seaborn",
+    "simple-slurm",
+    "statsmodels",
+    "tqdm",
+    "xarray",
+    "psycopg2-binary==2.9.3",
+    "tables==3.6.1"
+]
