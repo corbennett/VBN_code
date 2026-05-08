@@ -22,3 +22,25 @@ dependencies = [
     "psycopg2-binary==2.9.3",
     "tables==3.6.1"
 ]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "vbn_code/utilities"}
+py-modules = [
+    "vbn_utils",
+    "ccf_utils",
+    "decoding_utils",
+    "analysis_utils",
+    "notebook_utils",
+    "vbn_4day_utils",
+    "nwb_session_utils",
+    "opto_tagging_utils",
+    "build_master_stim_table",
+    "build_opto_metrics",
+    "make_unit_responsiveness_table",
+    "make_unit_rf_table",
+    "make_unit_tensor",
+]
