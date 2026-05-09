@@ -15,10 +15,10 @@ from allensdk.brain_observatory.behavior.behavior_project_cache.\
     import VisualBehaviorNeuropixelsProjectCache
 
 
-cache_dir = '/data/'
+cache_dir = '/Volumes/programs/mindscope/workgroups/np-behavior/vbn_data_release/vbn_s3_cache/'
 
-cache = VisualBehaviorNeuropixelsProjectCache.from_local_cache(
-            cache_dir=cache_dir, use_static_cache=True)
+cache = VisualBehaviorNeuropixelsProjectCache.from_s3_cache(
+            cache_dir=cache_dir)
 
 
 def get_session(session_id):

@@ -1217,60 +1217,6 @@ class Result:
     def __init__(self, pvalue):
         self.pvalue = pvalue
 
-
-def hybrid_permutation_test(vals1, vals2, num_iterations=10000, func=np.nanmedian, nan_policy='omit'):
-
-    obs = func(vals1) - func(vals2)
-    if np.isnan(obs):
-        return Result(np.nan)
-
-    null_results = []
-    for iter in range(num_iterations):
-        v1_nulls = []
-        v2_nulls = []
-        max_while_loops = 10 #prevent infinite loops
-        while_loop_counter = 0
-        while len(v1_nulls)==0 or len(v2_nulls)==0:
-            v1_nulls = [] #reset nulls in while loop
-            v2_nulls = []
-            for v1, v2 in zip(vals1, vals2):
-                # If paired
-                if not np.isnan(v1) and not np.isnan(v2):
-                    combined = [v1, v2]
-                    np.random.shuffle(combined)
-                    v1_nulls.append(combined[0])
-                    v2_nulls.append(combined[1])
-                
-                # If one is NaN, treat as unpaired
-                elif np.isnan(v1) and not np.isnan(v2):
-                    #randomly assign to either group
-                    if np.random.rand() < 0.5:
-                        v1_nulls.append(v2)
-                    else:
-                        v2_nulls.append(v2)
-                elif not np.isnan(v1) and np.isnan(v2):
-                    if np.random.rand() < 0.5:
-                        v1_nulls.append(v1)
-                    else:
-                        v2_nulls.append(v1)
-                elif np.isnan(v1) and np.isnan(v2):
-                    #both are nans, skip
-                    pass
-            while_loop_counter += 1
-            if while_loop_counter > max_while_loops:
-                break
-    
-        null_result = func(v1_nulls) - func(v2_nulls)
-        if np.isnan(null_result):
-            continue
-        null_results.append(null_result)
-
-    if len(null_results)==0:
-        return Result(np.nan)
-
-    p = Result((1 + np.sum(np.abs(null_results) >= abs(obs))) / (len(null_results) + 1))
-    return p
-
 def hybrid_permutation_test_2(vals1, vals2, num_iterations=10000, func=np.nanmedian, nan_policy='omit'):
     
     vals1 = np.array(vals1)
