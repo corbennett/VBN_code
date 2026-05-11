@@ -12,6 +12,7 @@ import decoding_utils as du
 import os
 from functools import partial
 
+### NOTE: This is a fork of the allensdk: https://github.com/arjunsridhar12345/AllenSDK
 from allensdk.brain_observatory.ecephys.behavior_ecephys_session import BehaviorEcephysSession
 
 sessions = pd.read_csv("/Volumes/programs/mindscope/workgroups/np-behavior/vbn_data_release/VBN_four_day_experiment_nwbs/sessions.csv")
